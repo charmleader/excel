@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 스마트 엑셀 파일 통합기 - Launcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .status-card {
+            background: linear-gradient(90deg, #56ab2f 0%, #a8e6cf 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .connection-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .connection-info h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .url-box {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+        
+        .button {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            min-width: 200px;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .button.secondary {
+            background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+        }
+        
+        .button.success {
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+        }
+        
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .features h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .feature-list li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online {
+            background-color: #28a745;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-offline {
+            background-color: #dc3545;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .loading {
+            display: none;
+            margin: 1rem 0;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 스마트 엑셀 파일 통합기</h1>
+            <p>빠르고 안전한 엑셀 파일 통합 솔루션</p>
+        </div>
+        
+        <div class="status-card">
+            <span class="status-indicator status-online" id="status-indicator"></span>
+            <span id="status-text">서버가 실행 중입니다</span>
+        </div>
+        
+        <div class="connection-info">
+            <h3>🌐 접속 정보</h3>
+            <p><strong>로컬 접속:</strong></p>
+            <div class="url-box" id="local-url">http://localhost:8501</div>
+            
+            <p><strong>네트워크 접속:</strong></p>
+            <div class="url-box" id="network-url">http://10.28.32.136:8501</div>
+            
+            <p><em>💡 위 주소 중 하나를 클릭하거나 복사하여 브라우저에서 접속하세요</em></p>
+        </div>
+        
+        <div>
+            <button class="button success" onclick="openApp()">
+                🚀 앱 열기
+            </button>
+            <button class="button" onclick="copyUrl('local')">
+                📋 로컬 주소 복사
+            </button>
+            <button class="button secondary" onclick="copyUrl('network')">
+                📋 네트워크 주소 복사
+            </button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>앱을 시작하는 중...</p>
+        </div>
+        
+        <div class="features">
+            <h3>🎯 주요 기능</h3>
+            <ul class="feature-list">
+                <li>여러 엑셀/CSV 파일을 하나로 통합</li>
+                <li>파일명 또는 폴더명 자동 추가 옵션</li>
+                <li>특정 시트만 선택하여 통합 가능</li>
+                <li>데이터 정리 및 중복 제거</li>
+                <li>CSV 및 Excel 형식으로 다운로드</li>
+                <li>사용자 친화적인 웹 인터페이스</li>
+                <li>스타일 오류가 있는 Excel 파일도 안전하게 처리</li>
+                <li>자동 파일 저장 및 폴더 열기</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>🌐 제작자: <a href="https://charmleader.com" target="_blank">charmleader.com</a></p>
+            <p>💌 문의 및 피드백 언제든 환영합니다!</p>
+        </div>
+    </div>
+
+    <script>
+        // 서버 상태 확인
+        async function checkServerStatus() {
+            try {
+                const response = await fetch('http://localhost:8501', { 
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                updateStatus(true, '서버가 실행 중입니다');
+            } catch (error) {
+                updateStatus(false, '서버에 연결할 수 없습니다');
+            }
+        }
+        
+        function updateStatus(isOnline, message) {
+            const indicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            
+            if (isOnline) {
+                indicator.className = 'status-indicator status-online';
+                statusText.textContent = message;
+            } else {
+                indicator.className = 'status-indicator status-offline';
+                statusText.textContent = message;
+            }
+        }
+        
+        function openApp() {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            
+            // 새 창에서 앱 열기
+            window.open('http://localhost:8501', '_blank');
+            
+            // 3초 후 로딩 숨기기
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 3000);
+        }
+        
+        function copyUrl(type) {
+            let url;
+            if (type === 'local') {
+                url = 'http://localhost:8501';
+            } else {
+                url = 'http://10.28.32.136:8501';
+            }
+            
+            // 클립보드에 복사
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✅ 주소가 클립보드에 복사되었습니다!\n\n' + url);
+            }).catch(() => {
+                // 클립보드 API가 지원되지 않는 경우
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ 주소가 클립보드에 복사되었습니다!\n\n' + url);
+            });
+        }
+        
+        // 페이지 로드 시 서버 상태 확인
+        window.addEventListener('load', () => {
+            checkServerStatus();
+            
+            // 5초마다 상태 확인
+            setInterval(checkServerStatus, 5000);
+        });
+        
+        // URL 클릭 시 복사
+        document.getElementById('local-url').addEventListener('click', () => copyUrl('local'));
+        document.getElementById('network-url').addEventListener('click', () => copyUrl('network'));
+    </script>
+</body>
+</html>

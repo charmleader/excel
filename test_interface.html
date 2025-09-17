@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엑셀 통합기 테스트 - charmleader.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .status {
+            background: linear-gradient(90deg, #56ab2f 0%, #a8e6cf 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .features h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .feature-list li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+        
+        .button {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function runExcelMerger() {
+            // Streamlit 앱 실행
+            try {
+                // 현재 디렉토리에서 streamlit run excel_merger_web.py 실행
+                const command = 'streamlit run excel_merger_web.py --server.port 8501';
+                
+                // 사용자에게 알림
+                alert('🚀 엑셀 통합기를 실행합니다!\n\n' +
+                      '잠시 후 브라우저에서 http://localhost:8501 로 자동 이동됩니다.\n\n' +
+                      '만약 자동으로 열리지 않으면 수동으로 접속해주세요.');
+                
+                // 백그라운드에서 명령어 실행 (Windows)
+                if (navigator.platform.indexOf('Win') !== -1) {
+                    // Windows 환경
+                    const wsh = new ActiveXObject('WScript.Shell');
+                    wsh.Run('cmd /c start cmd /k "' + command + '"', 0, false);
+                } else {
+                    // 다른 환경에서는 새 창에서 열기
+                    window.open('http://localhost:8501', '_blank');
+                }
+                
+                // 3초 후 자동으로 새 창에서 열기
+                setTimeout(() => {
+                    window.open('http://localhost:8501', '_blank');
+                }, 3000);
+                
+            } catch (error) {
+                alert('❌ 실행 중 오류가 발생했습니다.\n\n' +
+                      '수동으로 실행하려면:\n' +
+                      '1. 명령 프롬프트를 열고\n' +
+                      '2. 이 폴더로 이동한 후\n' +
+                      '3. "streamlit run excel_merger_web.py" 명령어를 실행하세요.\n\n' +
+                      '또는 http://localhost:8501 에 직접 접속하세요.');
+                
+                // 대안으로 새 창에서 열기
+                window.open('http://localhost:8501', '_blank');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 엑셀 통합기</h1>
+            <p>스마트한 엑셀 파일 통합 솔루션</p>
+        </div>
+        
+        <div class="status">
+            ✅ 설치가 완료되었습니다!<br>
+            이제 엑셀 파일들을 쉽게 통합할 수 있습니다.
+        </div>
+        
+        <div class="features">
+            <h3>🎯 주요 기능</h3>
+            <ul class="feature-list">
+                <li>여러 엑셀/CSV 파일을 하나로 통합</li>
+                <li>파일명 또는 폴더명 자동 추가 옵션</li>
+                <li>특정 시트만 선택하여 통합 가능</li>
+                <li>데이터 정리 및 중복 제거</li>
+                <li>CSV 및 Excel 형식으로 다운로드</li>
+                <li>사용자 친화적인 웹 인터페이스</li>
+                <li>완전 자동화된 설치 과정</li>
+            </ul>
+        </div>
+        
+        <div>
+            <a href="#" class="button" onclick="runExcelMerger()">
+                🚀 프로그램 실행하기
+            </a>
+            <a href="https://charmleader.com" class="button" target="_blank">
+                🌐 제작자 홈페이지
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>🌐 제작자: <a href="https://charmleader.com" target="_blank">charmleader.com</a></p>
+            <p>💌 문의 및 피드백 언제든 환영합니다!</p>
+        </div>
+    </div>
+</body>
+</html>

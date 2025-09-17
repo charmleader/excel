@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엑셀 통합기 사용 가이드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #28a745;
+        }
+        
+        .step h3 {
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-list {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 0.5rem 0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .button.secondary {
+            background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 스마트 엑셀 파일 통합기</h1>
+            <p>권한 문제 해결 및 사용 가이드</p>
+        </div>
+        
+        <div class="content">
+            <!-- 문제 해결 섹션 -->
+            <div class="section">
+                <h2>🔧 파일 읽기 권한 문제 해결</h2>
+                
+                <div class="warning">
+                    <strong>⚠️ 문제:</strong> "엑셀 파일 읽기 오류" 또는 "권한이 없습니다" 메시지가 나타나는 경우
+                </div>
+                
+                <div class="step">
+                    <h3>방법 1: 관리자 권한으로 실행</h3>
+                    <p>1. <code>run_excel_merger_admin.bat</code> 파일을 마우스 우클릭</p>
+                    <p>2. "관리자 권한으로 실행" 선택</p>
+                    <p>3. UAC 창에서 "예" 클릭</p>
+                </div>
+                
+                <div class="step">
+                    <h3>방법 2: 안전 실행 모드</h3>
+                    <p>1. <code>run_excel_merger_safe.bat</code> 더블클릭</p>
+                    <p>2. 자동으로 권한 설정 및 패키지 설치</p>
+                    <p>3. 권한 문제가 자동으로 해결됩니다</p>
+                </div>
+                
+                <div class="step">
+                    <h3>방법 3: 수동 권한 설정</h3>
+                    <p>1. 엑셀 파일이 있는 폴더를 마우스 우클릭</p>
+                    <p>2. "속성" → "보안" 탭</p>
+                    <p>3. "편집" → "추가" → "Everyone" 선택</p>
+                    <p>4. "모든 권한" 체크 후 "확인"</p>
+                </div>
+            </div>
+            
+            <!-- 사용법 섹션 -->
+            <div class="section">
+                <h2>📋 사용법</h2>
+                
+                <div class="step">
+                    <h3>1단계: 파일 준비</h3>
+                    <p>통합할 엑셀 파일들을 스크립트와 같은 폴더에 넣으세요:</p>
+                    <div class="file-list">
+                        엑셀 통합기.py<br>
+                        report.xlsx<br>
+                        data_v1.xlsx<br>
+                        sales-1.xlsx<br>
+                        sales-2.xlsx
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>2단계: 실행</h3>
+                    <p>다음 중 하나의 방법으로 실행하세요:</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🖥️</div>
+                            <h4>일반 실행</h4>
+                            <p>run_excel_merger_safe.bat</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <h4>관리자 실행</h4>
+                            <p>run_excel_merger_admin.bat</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🐍</div>
+                            <h4>Python 직접</h4>
+                            <p>python "엑셀 통합기.py"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>3단계: 결과 확인</h3>
+                    <p>통합이 완료되면 <code>통합파일.xlsx</code>가 생성됩니다.</p>
+                </div>
+            </div>
+            
+            <!-- 기능 설명 섹션 -->
+            <div class="section">
+                <h2>✨ 주요 기능</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h4>버전 관리</h4>
+                        <p>같은 파일의 여러 버전 중 최신 버전만 자동 선택</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>스마트 시트명</h4>
+                        <p>파일명_시트명_버전 형태로 자동 생성</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h4>권한 자동 처리</h4>
+                        <p>파일 권한 문제를 자동으로 감지하고 해결</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h4>안전한 읽기</h4>
+                        <p>여러 엔진으로 시도하여 최대한 파일 읽기 성공</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 예시 섹션 -->
+            <div class="section">
+                <h2>📝 사용 예시</h2>
+                
+                <div class="code">
+# 폴더 구조 예시
+📁 excel_folder/
+├── 엑셀 통합기.py
+├── run_excel_merger_safe.bat
+├── report.xlsx
+├── data_v1.xlsx
+├── data_v2.xlsx
+├── sales-1.xlsx
+└── sales-2.xlsx
+
+# 실행 후 결과
+📁 excel_folder/
+├── 엑셀 통합기.py
+├── run_excel_merger_safe.bat
+├── report.xlsx
+├── data_v1.xlsx (제외됨)
+├── data_v2.xlsx (사용됨)
+├── sales-1.xlsx (제외됨)
+├── sales-2.xlsx (사용됨)
+└── 통합파일.xlsx (생성됨)
+                </div>
+                
+                <div class="success">
+                    <strong>✅ 결과:</strong> 통합파일.xlsx에 다음 시트들이 생성됩니다:
+                    <ul style="margin-top: 0.5rem;">
+                        <li>report (report.xlsx의 시트)</li>
+                        <li>data_v2 (data_v2.xlsx의 시트)</li>
+                        <li>sales_2 (sales-2.xlsx의 시트)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 문제 해결 섹션 -->
+            <div class="section">
+                <h2>🚨 문제 해결</h2>
+                
+                <div class="step">
+                    <h3>Q: "파일이 다른 프로그램에서 사용 중입니다" 오류</h3>
+                    <p><strong>A:</strong> Excel에서 해당 파일을 열고 있다면 닫아주세요. 또는 파일을 다른 폴더로 복사해서 사용하세요.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Q: "권한이 없습니다" 오류</h3>
+                    <p><strong>A:</strong> 관리자 권한으로 실행하거나, 파일을 사용자 폴더(바탕화면, 문서)로 이동해서 실행하세요.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Q: "Python이 설치되어 있지 않습니다" 오류</h3>
+                    <p><strong>A:</strong> Python을 설치하거나, Python이 설치된 경로를 PATH에 추가하세요.</p>
+                </div>
+            </div>
+            
+            <!-- 실행 버튼 -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="run_excel_merger_safe.bat" class="button">🚀 안전 실행</a>
+                <a href="run_excel_merger_admin.bat" class="button secondary">🔐 관리자 실행</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
